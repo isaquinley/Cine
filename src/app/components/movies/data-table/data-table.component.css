@@ -1,0 +1,12 @@
+.card-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-top: 2rem;
+  flex-direction: column;
+}
+
+.card-img{
+  height: 350px;
+}

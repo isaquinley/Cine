@@ -17,15 +17,16 @@ import { NotificationService } from '../../../services/notification.service';
 })
 export class SalonFormComponent implements OnInit {
   public salons: Salon[];
+  public salonsAsp: Salon[]; // Services ASP NET CORE BACKEND
+  public moviesAsp: Salon[];
   public movies: Movie[];
   public salonRecord: Salon;
   peli = '';
   hora = '';
   sala = '';
-  numeroSala: Number;
   salasDisponibles = [''];
-  horarios = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes'];
-  dias = ['3:00 pm', '6:00 pm', '7:00 pm', '9:00 pm'];
+  dias = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes'];
+  horarios = ['3:00 pm', '6:00 pm', '7:00 pm', '9:00 pm'];
 
   constructor(
     private salonService: salonService,
@@ -37,30 +38,58 @@ export class SalonFormComponent implements OnInit {
   ngOnInit() {
     this.getSalonsList();
     this.getMovieList();
+    this.getRecords();
+    this.getMovieRecord();
   }
 
   getSalonsList() {
     this.salonService.getAllSalon().subscribe((data: any) => {
       this.salons = data;
-      console.log('salas', this.salons);
     });
   }
 
   getMovieList() {
     this.movieService.getAllMovies().subscribe((data: any) => {
       this.movies = data;
-      console.log('movies', this.movies);
     });
   }
 
   createSalon() {
     this.salonRecord = {
-      number: this.numeroSala,
+      code: '1',
       movie: this.peli,
       schedule: this.hora,
       name: this.sala,
+      description: '',
     };
     this.salonService.createSalon(this.salonRecord).subscribe((res) => {
+      this.notifyService.showSuccess('Sala asignada', 'Proceso exitoso');
+      this.modal.dismissAll();
+    });
+  }
+
+  //Function for ASP NET CORE Backend
+  getRecords() {
+    this.salonService.getAllRecords().subscribe((data: any) => {
+      this.salonsAsp = data;
+    });
+  }
+
+  getMovieRecord() {
+    this.movieService.getAllRecords().subscribe((data: any) => {
+      this.moviesAsp = data;
+    });
+  }
+
+  updateSala(id, salaname) {
+    this.salonRecord = {
+      code: id,
+      movie: this.peli,
+      schedule: this.hora,
+      description: '',
+      name: salaname ? salaname : 'Sala ' + id,
+    };
+    this.salonService.updateRecord(id, this.salonRecord).subscribe((res) => {
       this.notifyService.showSuccess('Sala asignada', 'Proceso exitoso');
       this.modal.dismissAll();
     });

@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginFormComponent } from './components/login/login-form/login-form.component';
 import { DataTableComponent } from './components/movies/data-table/data-table.component';
 import { SalonFormComponent } from './components/movieSalon/salon-form/salon-form.component';
+import { StatisticsComponent } from './components/statistics/statistics/statistics.component';
 
 
 const routes: Routes = [
@@ -10,6 +11,7 @@ const routes: Routes = [
   //{path: 'home' , component: HomeComponent},
     {path: 'movies', component: DataTableComponent},
     {path: 'salon', component: SalonFormComponent},
+    {path: 'statistics', component: StatisticsComponent},
 ];
 
 @NgModule({

@@ -6,22 +6,22 @@
         <table class="table table-hover table-wrapper-scroll-y">
           <thead>
             <tr class="bg-dark text-white">
-              <th>Numero</th>
+              <th>Número</th>
               <th>Sala</th>
-              <th>Descripcion</th>
-              <th>Pelicula</th>
+              <th>Descripción</th>
+              <th>Película</th>
               <th>Horario</th>
-              <th>Ver más</th>
+              <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let salon of salons">
+            <tr *ngFor="let salon of salonsAsp">
               <!-- <td><input   type="text" class="form-control"
                             [(ngModel)]="movie.Name"
                             [ngbTypeahead]="search"
                             [resultFormatter]="resultFormatListValue"
                             [inputFormatter]="inputFormatListValue"/></td> -->
-              <td>{{ salon.number }}</td>
+              <td>{{ salon.code }}</td>
               <td>{{ salon.name }}</td>
               <td>{{ salon.description }}</td>
               <td>{{ salon.movie }}</td>
@@ -33,7 +33,7 @@
                   class="btn btn-warning btn-sm"
                   (click)="modal.open(longContent)"
                 >
-                  Programacion
+                  Programación
 
                   <ng-template #longContent let-modal>
                     <div class="modal-header">
@@ -50,24 +50,41 @@
                     <div class="modal-body">
                       <div class="form-group">
                         <div class="form-group">
-                          <label for="exampleInputEmail1">Numero</label>
+                          <label for="exampleInputEmail1">Número</label>
                           <input
+                            disabled
                             class="form-control"
                             id="exampleInputEmail1"
                             aria-describedby="emailHelp"
-                            placeholder="Sala"
-                            [(ngModel)]="numeroSala"
+                            [(ngModel)]="salon.code"
                           />
                         </div>
                         <div class="form-group">
                           <label for="exampleInputEmail1">Sala</label>
                           <input
+                          disabled
                             class="form-control"
                             id="exampleInputEmail1"
                             aria-describedby="emailHelp"
                             placeholder="Sala"
                             [(ngModel)]="sala"
                           />
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleInputEmail1">Día</label>
+
+                          <select
+                            class="form-select"
+                            aria-label="Default select example"
+                            [(ngModel)]="hora"
+                          >
+                            <option
+                              *ngFor="let dia of dias"
+                              [value]="dia"
+                            >
+                              {{ dia }}
+                            </option>
+                          </select>
                         </div>
                         <div class="form-group">
                           <label for="exampleInputEmail1">Hora</label>
@@ -81,19 +98,19 @@
                               *ngFor="let horas of horarios"
                               [value]="horas"
                             >
-                              {{ horas }}
+                              {{ horas}}
                             </option>
                           </select>
                         </div>
                         <div class="form-group">
-                          <label for="exampleInputPassword1">Pelicula</label>
+                          <label for="exampleInputPassword1">Película</label>
                           <select
                             class="form-select"
                             aria-label="Default select example"
                             [(ngModel)]="peli"
                           >
                             <option
-                              *ngFor="let movie of movies"
+                              *ngFor="let movie of moviesAsp"
                               [ngValue]="movie.name"
                             >
                               {{ movie.name }}
@@ -104,7 +121,7 @@
                         <button
                           type="button"
                           class="btn btn-primary"
-                          (click)="createSalon()"
+                          (click)="updateSala(salon.code, salon.name)"
                         >
                           Guardar
                         </button>

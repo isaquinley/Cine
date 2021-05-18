@@ -2,9 +2,9 @@
 export class Movie {
   constructor(
       public code: string,
-      public Name: string,
-      public Description: string,
-      public Image: string,
+      public name: string,
+      public description: string,
+      public image: string,
       public duration: String,
       public type: String
   ) { }

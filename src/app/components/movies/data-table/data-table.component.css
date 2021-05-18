@@ -1,4 +1,4 @@
-.card-container{
+.card-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -7,6 +7,28 @@
   flex-direction: column;
 }
 
-.card-img{
+.card-img {
   height: 350px;
+}
+
+.card-horizontal {
+  display: flex;
+  flex: 1 1 auto;
+}
+
+.btn-detail {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}
+
+.card-img-detail {
+  height: 250px;
+}
+
+.card-container-detail {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
 }

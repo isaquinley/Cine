@@ -1,1 +1,43 @@
-<p>statistics works!</p>
+<div class="container-fluid">
+  <br />
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="table-responsive-xl">
+        <table class="table table-hover table-wrapper-scroll-y">
+          <thead>
+            <tr class="bg-dark text-white">
+              <th>Numero</th>
+              <th>Sala</th>
+              <th>Descripcion</th>
+              <th>Pelicula</th>
+              <th>Horario</th>
+              <th>Ranking</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let salon of salons">
+              <!-- <td><input   type="text" class="form-control"
+                            [(ngModel)]="movie.Name"
+                            [ngbTypeahead]="search"
+                            [resultFormatter]="resultFormatListValue"
+                            [inputFormatter]="inputFormatListValue"/></td> -->
+              <td>{{ salon.number }}</td>
+              <td>{{ salon.name }}</td>
+              <td>{{ salon.description }}</td>
+              <td>{{ salon.movie }}</td>
+              <td>{{ salon.schedule }}</td>
+
+              <td>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
